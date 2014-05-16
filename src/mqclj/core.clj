@@ -5,14 +5,11 @@
 
 (defn create-factory [url] (doto (ActiveMQConnectionFactory.) (.setBrokerURL url)))
 
-(defn create-connection [factory]
-  (doto (.createConnection factory) (.start)))
+(defn create-connection [factory] (doto (.createConnection factory) (.start)))
 
-(defn create-session [connection]
-  (.createSession connection false Session/AUTO_ACKNOWLEDGE))
+(defn create-session [connection] (.createSession connection false Session/AUTO_ACKNOWLEDGE))
 
-(defn create-queue [session queue]
-  (.createQueue session queue))
+(defn create-queue [session queue] (.createQueue session queue))
 
 (defn create-producer [session destination]
   (doto (.createProducer session destination) (.setDeliveryMode DeliveryMode/NON_PERSISTENT)))
